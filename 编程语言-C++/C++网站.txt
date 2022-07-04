@@ -1,0 +1,16 @@
+http://www.gnu.org/和https://gcc.gnu.org/onlinedocs/
+https://en.cppreference.com/w/
+https://www.learncpp.com/
+http://www.cplusplus.com/
+https://www.tutorialspoint.com/cplusplus/index.htm
+https://link.zhihu.com/?target=https%3A//github.com/fffaraz/awesome-cpp
+
+C++标准库=STL+其他元素
+STL分为6大部件
+C++标准库以头文件形式实现
+C++标准库头文件不包含.h后缀
+新式C头文件不包含.h后缀
+旧式C头文件包含.h后缀
+命名空间:对已有的源代码进行再封装
+单一打开std中的某一函数 std::cout
+由于C++标准库的存在,不同编译器之间的C++编码标准几乎完全相同

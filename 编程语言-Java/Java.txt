@@ -1,0 +1,615 @@
+1、Choice Questions. (choose the right answer foreach one, 10 points)
+1.Consider the following Java program segment. 		A
+    Int[] arr;
+   A.Arr=new int[3];
+   B.Arr[2]=19;
+   C.Arr[1]=17;
+   D.Arr[0]=15;;
+   Which of the following Java statements is syntactically correct and semantically identical to the program segma'sent?  A
+   A.int[] arr={15,17,19};
+   B.Int[3] arr={15,17,19};
+   C.Int arr={15,17,19};
+   D.Int arr[3]={15,17,19};
+
+2.Given
+   Public class Test{
+    Public static void main(String args[]){
+ Class Foo{
+	Pubic int i=3;}
+ 	Object o=(Object)new Foo();
+	Foo foo=(Foo)o;
+	System.out.println(foo.i);}}
+What is the result?		B
+A.Compliation will fail
+B.Compliation will succeed but the program will print”3”;
+C.Compiation will succeed but the program will throw a ClassCaseException at line 6;
+D.Compliation will succeed but the program will throw a ClassCaseException at line 7
+
+3.The name of a Java source file		D
+	Ahas no restrictions
+	B.must be the same as the class it defines.ignoring case
+	C.must used the extension class
+	D.must be the same as the class it defines,respecting case
+
+4.The subclass of an abstract class nust    C
+A.be abstract
+B.be abstract and implement all of the parent's abstract methods
+C.be abstract or implement all of the parent's abstract methods
+D.implement all of the parent's abstract methods
+
+5.Which of the following statements is true about interfaces in Java   D
+I.Interfaces can extend other interfaces
+II.Interfaces can contain data fields
+A.I only 
+B.None
+C.II only
+D.I and II
+
+6.Which of the following statements is ture in Java     C
+I.All of the methods in an abstract class must be abstract 
+II,All of the methods in an interface must be abstract
+A.None
+B.I only
+C.II only
+D.I and II
+
+7.Which is a Java access modifier used to designate that a particular data field
+will not be inherited by a subclass		C	
+A.final
+B.protected
+C.private
+D.default
+
+8.The statement of the InputStream that sets up the file "file.txt"is	A	
+A.InputStream in=new FileInputStream("file.txt");
+B.InputStream in=new FileInputStream(new File("file.txt"));
+C.InputStream in=new FileReader("file.txt");
+D.InputStream in=new FileReader(new File("file.txt"));
+
+900.Which of the following are legal declarations of a		C
+two-dimensional array of integers
+A.int[5][5]a=new int[][]
+B.int a=new int[5,5]
+C.int a[][]=new int[5][5]
+D.int[][]a=new [5]int[5]
+
+10.Which method is not Tread's static method		C
+A.start()
+B.run()
+C.exit()
+D.getPriority()
+
+
+II.Fill in the blanks
+1.Class Animal is the super-class of class Cat and class Dog,write a program to
+describe the inheritance hierarchy
+class Animal{
+Anilmal a;
+public void cry(Animal a){
+if(a        (1)     Dog){
+a refers to a cat
+System.out.println("I am acute puppy");
+}else{
+System.out .println("I am a cute animal");
+}
+}
+}
+//class Dog is a subclass of class Animal
+class Dog(	(2)	){
+public void cry(Animal a){
+	(3)	}//call the cry() method of the Animal super-class
+System.out.println("")
+
+public class AnimalTest{
+public stratic void main(String args[]){
+Animal dn=new Dog();
+Dog d=(	      (4)	);//cast dn to a dog
+(                       (5)                       )//run cry() method of Dog with parameter dn  运行cry方法用参数dn
+Animal cn=new Cat();
+cn.cry(dn);
+Animal an=new Animal();
+an.cry(an);
+}
+}
+
+2.Write a program to put the keyboard input into a file that named data.txt
+public class Input ToFile{
+public static void main(String[]  args) throws
+IOException{
+ BufferedReader buf=new BuffereReader(new
+             InputStreamReader(System.in)(6)         );//create a object to read the keyboard input
+BufferedWriter buf2=new BufferedWriter(new               
+(7)     FileReaderI("data.txt")              );//create a object to put the input
+contents in data .txt
+System.out .println("What do you want to write:")
+String.str=(             buf.readLine();(8)                 )//read a line of the
+keyboard input
+while(!str.equals("YES")){(
+                    buf2.write(str);(9)             )//write the input into 
+the file
+buf2.newLine();
+System.out .println(“Do you want to quit the program/Input YES to quit”));
+str=buf.readLine();
+}
+buf.close();
+(                          buf2.close();(10)                        );//close the write process
+}
+III.Answer the following
+1.
+public static void main(String arguments[]){
+amethod)(arguments);
+}
+public void amethod (String[] arguments){
+System.out.println(arguments);
+System.out.println(arguments[1]);
+}
+Error 
+Non-static methods cannot be accessed through
+static methods
+Because main is defined as static , you need to create an
+instance of class in order to call any Non-static methods
+
+2.(3points)What does deff function do?
+class def{
+public int deff (int x,int y){
+int t;
+if(x<y){
+t=x;
+x=y;
+y=t;
+}
+while(y！=0){
+if(x=y)return x;
+else{
+int k=x%y;
+x=y;}
+return x;
+}
+Compute the greatest common divisor of two positive methods.
+
+
+3.(4points)Input three integers x.y.z put the three
+numbers in accordance with the order from small to large
+output.Descripion of the algorthm steps of the problem.
+
+x,y and z are sorted from the smallest to the largest .
+Compare the size with x and y,
+if(x>y) swap x and y.
+Compare the size with x and z,
+if(x>z) swap x and z.
+if x is the smallest of the three numbers
+Compare the size with y and z
+if(y>z) swap y and z
+
+
+IV.Read the following program,give the result.(each question is five points)Total 30points
+1.
+public class Test{
+public static  void main(String args[]){
+String str1="java";
+String str2=new String("java");
+String str3=new String("java");
+int pos1=str1.indexOf("a");
+in pos2=str1.indexOf("av");
+boolean b1=str1==str2;
+boolean b2=str1.equals(str2);
+boolean b3=str2.equals(str3);
+System.out .println(pos1);
+System.out.println(pos2);
+System.out.println(b1);
+System.out.println(b2);
+System.out.println(b3);
+}
+public class Test2{
+public static void main(String args[]){
+int data1=2017;
+modify1(data1);
+System.out.println(data1);
+int []data2=new int[](2017);
+modify1(data2[0]);
+System.out.println(data2[0]);
+data2=new int[]{2017};
+modify2(data2);
+System.out.println(data2[0]);
+data1=2017;
+modify2(new int[]{data 1});
+modify3(data2);
+System.out.println(data2[0]);
+}
+public static void modify1(int data){
+data++}
+public static void modify2(int[] data){
+data[0]++;
+}
+public static void modify2(int[] data){
+data=new int[]{2018}
+}
+
+3.public class Person{
+public String toString(){
+return "person";
+}
+}
+public class Student extends Person{
+public String toString(){
+return "student";
+}
+}
+public class CollegeStudent extends Student{
+public String toString(){
+return "collegestudent";
+}
+
+}
+public class Test3{
+public static void main(String[] args){
+Object obj1=new Student();
+Student obj2=new CollegeStudent();
+Person obj3=new Student();
+Person obj4=new Person();
+Person obj5=new CollegeStudent();
+System.out.println(obj1);
+System.out.println(obj2);
+System.out.println(obj3);
+System.out.println(obj4);
+System.out.println(obj5);
+
+
+
+
+public class Test4{
+public static void main(String[] args){
+int result1=f(6);
+int result2=f(6,2);
+System.out.println(result1);
+System.out.println(result2);
+}
+public static int f(int max){
+return f(max.1);
+}
+public static int f(int max,int i){
+if(max<=1){
+
+return1;
+
+
+}
+else{
+return max*f(max-i,i);
+}
+}
+}
+5.
+Sanjiaoxing sjx1=new Sanjiaoxing(2,3,4);
+int  zhouchang1=sjx1.jisuanZhouchang();
+System.out.println(zhouchang1);
+Sanjiaoxing sjx2=new Sanjiaoxing(2,3,5);
+int zhouchang2=sjx2.jisuanZhouchang();
+System.out.println(zhouchang2);
+}
+catch(IIIegalShapeException e){
+System.out.println(e.getMessage());
+}
+public class Sanjiaoxing{
+private int e1;
+private int e2;
+private int e3;
+public Sanjiaoxing(int e1,int e2,int e3)throws IIIegalShapeException{
+if(e1+e2<=e3||e1+e3<=e2||e3+e2<=e1){
+throw new IIegalShapeExeption("不能构成三角形"；
+}
+this.e1=e1;
+this.e2=e2;
+this.e3=e3;
+}
+publicint jisuanzhouchang(){
+return e1+e2+e3;
+}
+}
+public class IIIegallShapeException extends Exception{
+public IIIegalShapeException(String message
+Throwable cause){
+super(message,cause);
+}
+pulic IIIegalShapeException(String message){
+super(message);
+}
+}
+6.
+The directory "e:test6"contains files and sub directories,
+showns as helow Please mess the result of Test6 class
+
+public class Test6{
+pulic static void main(String[] args){
+File dir=new File("e:\\test6");
+File[]files=dir.listFiles(new FileFilter(){
+public boolean accept(File pathname){
+return;
+}
+pathname.getName().contains("2017java");
+}
+});
+System.out.println(file.length);
+}
+}
+
+V.Design the algorithms
+1.Write a program to simulate ticketing system.Suppose there are 10 tickets,selling tickets
+together to create two threads that execute"num--" operation.Requires sychronized implementation
+解答：
+int num=10;
+public synchronized void sell()
+{
+     System.out.println(Thread.currentThread().getName()车票:"+num--);
+}
+public void run()
+{
+while (ture)
+{
+    if(num>0)
+    {
+        sell();
+
+    }
+   else{
+        return;
+         }
+try
+{
+    Thread.sleep(10);
+}
+catch(Exception e){
+                             e.printStackTrace();
+}
+}
+}
+public static void main(String[]args){
+ThreadA sell=new ThreadA();
+Therad t1=new Thread(sell);
+Thread t2=new Thread(sell);
+t1.start();
+t2.start();}}
+
+
+
+
+
+
+
+
+
+2.Read a Java program from the disk with the Scanner class,
+and the source code is displayed on the screen.
+(Read the file path:C:\\file.java)
+public class FileA1{
+public static void main(String args[])
+{一分·
+String line=null;
+一分
+try
+{
+Scanner in=new Scanner(new
+File("D:\\java-workspace\\java\\src\\file\\File
+Test.java"));三分
+while（ in.hasNextLine()）{
+两分
+line=innextLine();
+三分
+System.out.println(line);
+两分
+}
+}catch(Exception e)
+{ 一分
+e.printStackTrace();
+一分
+}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

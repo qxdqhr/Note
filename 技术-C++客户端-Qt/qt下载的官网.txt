@@ -1,0 +1,6 @@
+https://download.qt.io/official_releases/qt/
+http://download.qt.io/archive/qt/
+
+1. qt qwidget 控件
+
+2.qt  qt quick  html  css  js 开发项目 qss
