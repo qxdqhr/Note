@@ -68,9 +68,7 @@ int main(int argc, const char * argv[])
    @autoreleasepool
    {
      
-     Person *p1 = [Person new];//p1是1个强指针.
-     
-     NSLog(@"------");
+     Person *p1 = [Person new];//p1是1个强指针
    }
    //执行到这里时 p1指针被回收,没有任何强指针指向原对象 对象被立即回收
    return 0;
@@ -87,7 +85,6 @@ int main(int argc, const char * argv[])
    		 Person *p1 = [Person new];//p1是1个强指针.
        p1 = nil;//p1赋值为nil.
        //Person对象没有被任何的指针所指向立即释放,所以.Person对象在这里被释放.
-       NSLog(@"------");
     }
     return 0;
 }
@@ -119,7 +116,7 @@ int main(int argc, const char * argv[])
 }
 
 
-3).最重要的1点:不能创建对象用1个弱指针存储这个对象的指针.
+3)最重要的1点:不能创建对象用1个弱指针存储这个对象的指针.
 这样的话,刚创建出来的对象,就没有任何强指针指向,创建出来就会被回收.
 int main(int argc, const char * argv[])
 {
@@ -138,155 +135,67 @@ int main(int argc, const char * argv[])
  
 ~~~
 
+## 注意:  
+
+- 在ARC机制下. 当对象被回收的时候. 原来指向这个对象的弱指针会被自动设置为nil
+- 什么情况下叫做对象没有强指针向指向
+  - 指向对象的强指针被回收
+  - 指向对象的强指针被赋值为nil
+- 在ARC的机制下,@property参数不能使用retain
+  - 因为retain代表生成的setter方法是MRC的标准的内存管理代码.而我们在ARC的机制下 不需要这些代码
+  - 所以,在ARC机制下的setter方法 什么都不需要做.直接赋值就可以了
+-  ARC机制下,我们关注的重点:
+  - 当1个类的属性是1个OC对象的时候.这个属性应该声明为强类型的还是弱类型的
+  - 很明显,应该声明为1个强类型的.
+
+#  如何控制@property生成的私有属性,是强类型还是弱类型呢?
+
+- 使用参数, strong和weak
+- 如果不写,默认strong
+
+~~~ 
+@property(nonatomic,strong)Car *car; //   生成1个强类型的私有属性_car 
+@property(nonatomic,weak)Car *car;   //   生成1个弱类型的私有属性_car 
+~~~
+
+- 在ARC机制下,
+  - 如果属性的类型是OC对象类型的.绝大多数场景下使用strong
+  - 如果属性的类型不是OC对象类型的.使用assign
+- strong和weak都是应用在属性的类型是OC对象的时候. 属性的类型不是OC对象的时候就使用assign
+
+- 在ARC机制下,需要将MRC下的retain换为≈strong
+
+- strong做的事情:
+  - 生成私有属性.并且这个私有属性是strong
+  - 生成getter setter方法的声明与实现
+  - ßsetter的实现:直接赋值. 
+
+#  在ARC机制下.当两个对象相互引用的时候.如果两边都使用strong 那么就会先内存泄露.
+
+- 解决方案: 1端使用strong 1端使用weak
 
 
-  
 
- 
+# ARC/MRC 模式下单独文件使用另一种内存管理方式该如何修改?
 
-   4). 在ARC机制下. 当对象被回收的时候. 原来指向这个对象的弱指针会被自动设置为nil
+- 在ARC机制的项目下使用MRC机制的文件，需要设置对应文件的Compiler Flags为 -fno-objc-arc
+- 在MRC机制的项目下使用ARC机制的文件，需要设置对应文件的Compiler Flags为 -fobjc-arc
+- 项目文件 - Build Phases - Compile Sources 中的对应文件 - Compile Flags
 
-​      \1. ARC机制下的对象的回收的标准: 当没有任何强类型的指针指向对象的时候,这个对象就会被立即回收.
+# 如何将整个MRC程序,转换为ARC程序?
 
- 
+- 项目文件 - Targets 中选择一项 - Build Settings - Objective-C Automatic Reference Counting 
 
- \2. 强类型指针 弱类型指针.
+# ARC机制垃圾回收机制有什么区别?
 
- 
+- ARC机制: 编译时,在代码中合适的地方插入retain/release 等
+  - 插入的代码保证当对象无人使用的时 引用计数器为0,从而能够被自动回收
 
- \3. 什么情况下叫做对象没有强指针向指向.
+ ## 垃圾回收机制是什么意思?
 
- 
-
-   1). 指向对象的强指针被回收.
-
- 
-
-   2). 指向对象的强指针被赋值为nil
-
- 
-
- \4. 在ARC的机制下,@property参数不能使用retain
-
-   因为retain代表生成的setter方法是MRC的标准的内存管理代码.
-
-   而我们在ARC的机制下 不需要这些代码.
-
- 
-
-   所以,在ARC机制下的setter方法 什么都不需要做.直接赋值就可以了.
-
- 
-
- 
-
- \5. ARC机制下,我们关注的重点.
-
-   当1个类的属性是1个OC对象的时候.这个属性应该声明为强类型的还是弱类型的.
-
-   很明显,应该声明为1个强类型的.
-
- 
-
-   问题来了?
-
- 
-
-   如何控制@property生成的私有属性,是1个强类型的还是1个弱类型的呢?
-
- 
-
-   使用参数, strong和weak
-
- 
-
-   @property(nonatomic,strong)Car *car;
-
-   代表生成的私有属性_car 是1个强类型的.
-
- 
-
-   @property(nonatomic,weak)Car *car;
-
-   代表生成的私有属性_car 是1个弱类型的.
+- 程序在运行的期间,有1个东西叫做垃圾回收器.不断的扫描堆中的对象是否无人使用.
 
  
 
  
-
-   如果不写,默认是strong.
-
- 
-
- 
-
- \6. 使用建议.
-
- 
-
-   1). 在ARC机制下.如果属性的类型是OC对象类型的.绝大多数场景下使用strong
-
-   2). 在ARC机制下.如果属性的类型不是OC对象类型的.使用assign
-
- 
-
-   3). strong和weak都是应用在属性的类型是OC对象的时候. 属性的类型不是OC对象的时候就使用assign.
-
- 
-
- 
-
- 
-
-   \--------
-
-   在ARC机制下,将MRC下的retain换位strong
-
- 
-
-   @property(nonatomic,strong)Car *car;
-
-   做的事情:
-
-   1). 生成私有属性.并且这个私有属性是strong
-
-   2). 生成getter setter方法的声明
-
-   3). 生成getter setter方法的声明
-
- 
-
-​     setter的实现:直接赋值.
-
- 
-
-  在ARC机制下.当两个对象相互引用的时候.如果两边都使用strong 那么就会先内存泄露.
-
-   
-
- 解决方案: 1端使用strong 1端使用weak
-
-
-
-
-
- \1. 有可能会遇到的问题.
-
- 
-
- 
-
-   程序使用的是ARC机制开发的,但是其中的某些类使用的是MRC.
-
- 
-
-​    
-
- 
-
-  \2. 使用命令. -fno-objc-arc
-
-
-
-可以将整个MRC程序,转换为ARC程序;
 
